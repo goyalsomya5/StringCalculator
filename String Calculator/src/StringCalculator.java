@@ -3,16 +3,22 @@ public class StringCalculator {
 
 	public int Add(String Input) {
 
-//		When null string is passed as input
+//		When null string is passed in input
 		if (Input.equals(""))
 			return 0;
 
 		String Numbers[] = Input.split(",");
-		
-		if(Numbers.length == 1)
+
+
+//		when a single number is passed in input
+		if (Numbers.length == 1)
 			return Integer.parseInt(Numbers[0]);
-		
-		return Integer.parseInt(Numbers[0]) + Integer.parseInt(Numbers[1]);
+
+
+//		when a two or more numbers are passed in input
+		else {
+			return getSum(Numbers);
+		}
 	}
 
 	public boolean isEmpty(String Input) {
@@ -21,5 +27,13 @@ public class StringCalculator {
 
 		return false;
 	}
-	 
+
+	public int getSum(String Numbers[]) {
+		int sum = 0;
+
+		for (String s : Numbers)
+			sum += Integer.parseInt(s);
+
+		return sum;
+	}
 }

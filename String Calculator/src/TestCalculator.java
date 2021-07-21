@@ -29,4 +29,10 @@ public class TestCalculator {
 		assertEquals(3, Calculator.Add("1,2"));
 	}
 
+	@Test
+	public void Test4() {
+//		test for unknown amount of numbers
+		assertEquals(15, Calculator.Add("1,2,3,4,5"));
+	}
+
 }
