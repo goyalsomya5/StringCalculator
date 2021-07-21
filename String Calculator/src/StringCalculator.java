@@ -7,6 +7,7 @@ public class StringCalculator {
 		if (Input.equals(""))
 			return 0;
 
+		
 		String Numbers[] = Input.split(",");
 
 
