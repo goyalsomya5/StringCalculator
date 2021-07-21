@@ -42,10 +42,11 @@ public class StringCalculator {
 //		Handling the custom Delimiters between the numbers
 		if (Input.startsWith("//")) {
 			Matcher m = Pattern.compile("//(.)\n(.*)").matcher(Input);
+			m.matches();
 			String customDelimiter = m.group(1);
 			String numbers = m.group(2);
 
-			return numbers.split(customDelimiter);
+			return numbers.split(Pattern.quote(customDelimiter));
 		}
 
 //		Handling the new line and commas between the numbers
