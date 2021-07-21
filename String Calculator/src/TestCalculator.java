@@ -34,11 +34,23 @@ public class TestCalculator {
 //		test for unknown amount of numbers
 		assertEquals(15, Calculator.Add("1,2,3,4,5"));
 	}
-	
+
 	@Test
 	public void Test5() {
 //		test for numbers separated by a new line.
-		assertEquals(10 , Calculator.Add("6\n4"));
+		assertEquals(10, Calculator.Add("6\n4"));
+	}
+
+	@Test
+	public void Test6() {
+//		test for numbers separated by a new line.
+		assertEquals(15, Calculator.Add("6\n4,5"));
+	}
+	
+	@Test
+	public void Test7() {
+//		test for different kinds of delimiters
+		assertEquals(3, Calculator.Add("//;\n1;2"));
 	}
 
 }
