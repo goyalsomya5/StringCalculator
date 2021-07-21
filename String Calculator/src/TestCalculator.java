@@ -21,5 +21,14 @@ public class TestCalculator {
 
 		assertEquals(13, Calculator.Add("13"));
 	}
+	
+	@Test
+	public void Test3() {
+//		test for a two numbers
+
+		StringCalculator Calculator = new StringCalculator();
+
+		assertEquals(3, Calculator.Add("1,2"));
+	}
 
 }
