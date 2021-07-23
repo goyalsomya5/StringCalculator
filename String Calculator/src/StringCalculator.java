@@ -28,15 +28,19 @@ public class StringCalculator {
 		return false;
 	}
 
-	public int getSum(String Numbers[]) throws Exception{
+	public int getSum(String Numbers[]) throws Exception {
 		int sum = 0;
 
+		String negative_numbers = getNegatives(Numbers);
+		
+		if (negative_numbers.length() != 0)
+			throw new Exception("negatives not allowed : " + negative_numbers);
+		
 		for (String s : Numbers) {
 			int n = Integer.parseInt(s);
-			if(n < 0)
-			throw new Exception("negatives not allowed : " + n);	
 			sum += n;
 		}
+
 		return sum;
 	}
 
@@ -59,6 +63,17 @@ public class StringCalculator {
 		}
 	}
 
-	
+	public String getNegatives(String Numbers[]) {
+//		Catching all the negative numbers present in the string.
+		StringBuilder negative_numbers = new StringBuilder();
+		for (String s : Numbers) {
+			int n = Integer.parseInt(s);
+
+			if (n < 0)
+				negative_numbers.append(n + " ");
+		}
+
+		return negative_numbers.toString();
+	}
 
 }
