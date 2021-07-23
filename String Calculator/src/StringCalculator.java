@@ -42,6 +42,9 @@ public class StringCalculator {
 		
 		for (String s : Numbers) {
 			int n = Integer.parseInt(s);
+
+//			Numbers less than or equal to 1000 will only be considered in the sum
+			if(n <= 1000)
 			sum += n;
 		}
 
