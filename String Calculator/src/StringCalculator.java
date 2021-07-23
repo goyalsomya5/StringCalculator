@@ -3,7 +3,7 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-	public int Add(String Input) {
+	public int Add(String Input) throws Exception {
 
 //		when null string is passed in input
 		if (Input.equals(""))
@@ -28,12 +28,15 @@ public class StringCalculator {
 		return false;
 	}
 
-	public int getSum(String Numbers[]) {
+	public int getSum(String Numbers[]) throws Exception{
 		int sum = 0;
 
-		for (String s : Numbers)
-			sum += Integer.parseInt(s);
-
+		for (String s : Numbers) {
+			int n = Integer.parseInt(s);
+			if(n < 0)
+			throw new Exception("negatives not allowed : " + n);	
+			sum += n;
+		}
 		return sum;
 	}
 
@@ -55,4 +58,7 @@ public class StringCalculator {
 			return Input.split(delimiters);
 		}
 	}
+
+	
+
 }
