@@ -100,5 +100,11 @@ public class TestCalculator {
 		
 		assertEquals(5, Calculator.getCalledCount());
 	}
+	
+	@Test
+	public void Test12() throws Exception {
+//	test : Numbers greater than 1000 shoulder be ignored.
+		assertEquals(10010, Calculator.Add("1,2,3,4,1000,1002"));
+	}
 
 }
