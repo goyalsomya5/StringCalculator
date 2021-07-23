@@ -1,7 +1,6 @@
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 import org.junit.*;
 
 public class TestCalculator {
@@ -85,10 +84,19 @@ public class TestCalculator {
 
 			String expectedMessage = "negatives not allowed : -2 -3 -5 -7";
 			String actualMessage = e.getMessage();
-			
+
 			assertTrue(actualMessage.contains(expectedMessage));
 		}
-
+	}
+	
+	@Test
+	public void Test11() throws Exception{
+//		test : the exception on passing multiple negative numbers should contain all the negative numbers
+		int Call_Time = 5;
+		for(int call = 0 ; call < Call_Time ; call++) {
+			assertEquals(6, Calculator.Add("1,2,3"));
+		}
+		assertEquals(5, Calculator.getCalledCount());
 	}
 
 }

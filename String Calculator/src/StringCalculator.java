@@ -76,4 +76,8 @@ public class StringCalculator {
 		return negative_numbers.toString();
 	}
 
+	public Integer getCalledCount() {
+		return null;
+	}
+
 }
