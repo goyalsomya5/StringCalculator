@@ -3,10 +3,11 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 	int Call_Count;
+
 	public void setCall_Count(int call_Count) {
 		Call_Count = call_Count;
 	}
-	
+
 	public int Add(String Input) throws Exception {
 		Call_Count++;
 //		when null string is passed in input
@@ -36,16 +37,16 @@ public class StringCalculator {
 		int sum = 0;
 
 		String negative_numbers = getNegatives(Numbers);
-		
+
 		if (negative_numbers.length() != 0)
 			throw new Exception("negatives not allowed : " + negative_numbers);
-		
+
 		for (String s : Numbers) {
 			int n = Integer.parseInt(s);
 
 //			Numbers less than or equal to 1000 will only be considered in the sum
-			if(n <= 1000)
-			sum += n;
+			if (n <= 1000)
+				sum += n;
 		}
 
 		return sum;
@@ -53,8 +54,22 @@ public class StringCalculator {
 
 	public String[] getInputSplitByDelimiter(String Input) {
 
+//		Handling the custom Delimiters of length greater then 1 between the numbers.
+		if (Input.startsWith("//[")) {
+			String DelimiterInput = Input.split("\n")[0];
+
+			Matcher m = Pattern.compile("\\[(.*?)\\]").matcher(DelimiterInput);
+			m.find();
+
+			System.out.println(DelimiterInput + " " + m + "\n" + Input);
+			String customDelimiter = m.group(1);
+			String numbers = Input.split("\n")[1];
+
+			return numbers.split(Pattern.quote(customDelimiter));
+		}
+
 //		Handling the custom Delimiters between the numbers
-		if (Input.startsWith("//")) {
+		else if (Input.startsWith("//")) {
 			Matcher m = Pattern.compile("//(.)\n(.*)").matcher(Input);
 			m.matches();
 			String customDelimiter = m.group(1);

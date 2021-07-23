@@ -107,4 +107,11 @@ public class TestCalculator {
 		assertEquals(1010, Calculator.Add("1,2,3,4,1000,1002"));
 	}
 
+	@Test
+	public void Test13() throws Exception {
+//	test : Numbers greater than 1000 shoulder be ignored.
+		assertEquals(15, Calculator.Add("//[**]\n1**2**3**4**5"));
+	}
+
+	
 }
