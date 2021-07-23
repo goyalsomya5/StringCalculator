@@ -2,9 +2,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
-
+	int Call_Count;
+	public void setCall_Count(int call_Count) {
+		Call_Count = call_Count;
+	}
+	
 	public int Add(String Input) throws Exception {
-
+		Call_Count++;
 //		when null string is passed in input
 		if (Input.equals(""))
 			return 0;
@@ -77,7 +81,8 @@ public class StringCalculator {
 	}
 
 	public Integer getCalledCount() {
-		return null;
+//		return the count of how many times Add function has been invoked
+		return Call_Count;
 	}
 
 }

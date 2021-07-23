@@ -69,7 +69,6 @@ public class TestCalculator {
 
 			String expectedMessage = "negatives not allowed : -2";
 			String actualMessage = e.getMessage();
-
 			assertTrue(actualMessage.contains(expectedMessage));
 		}
 
@@ -88,14 +87,17 @@ public class TestCalculator {
 			assertTrue(actualMessage.contains(expectedMessage));
 		}
 	}
-	
+
 	@Test
-	public void Test11() throws Exception{
+	public void Test11() throws Exception {
 //		test : the exception on passing multiple negative numbers should contain all the negative numbers
+		Calculator.setCall_Count(0);
+
 		int Call_Time = 5;
-		for(int call = 0 ; call < Call_Time ; call++) {
+		
+		for (int call = 0; call < Call_Time; call++) 
 			assertEquals(6, Calculator.Add("1,2,3"));
-		}
+		
 		assertEquals(5, Calculator.getCalledCount());
 	}
 
