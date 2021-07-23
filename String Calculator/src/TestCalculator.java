@@ -109,9 +109,14 @@ public class TestCalculator {
 
 	@Test
 	public void Test13() throws Exception {
-//	test : Numbers greater than 1000 shoulder be ignored.
+//	test : Custom delimiter of length greater than 1.
 		assertEquals(15, Calculator.Add("//[**]\n1**2**3**4**5"));
 	}
-
+	
+	@Test
+	public void Test14() throws Exception {
+//	test : Multiple Delimiters used  in one string.
+		assertEquals(15, Calculator.Add("“//[*][%]\\n1*2%3"));
+	}
 	
 }

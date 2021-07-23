@@ -60,8 +60,6 @@ public class StringCalculator {
 
 			Matcher m = Pattern.compile("\\[(.*?)\\]").matcher(DelimiterInput);
 			m.find();
-
-			System.out.println(DelimiterInput + " " + m + "\n" + Input);
 			String customDelimiter = m.group(1);
 			String numbers = Input.split("\n")[1];
 
