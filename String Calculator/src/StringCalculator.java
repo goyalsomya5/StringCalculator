@@ -5,13 +5,19 @@ public class StringCalculator {
 	int Call_Count;
 
 	public void setCall_Count(int call_Count) {
+//		setting the call_Count 0 for whenever called.
 		Call_Count = call_Count;
+	}
+
+	public Integer getCalledCount() {
+//		return the count of how many times Add function has been invoked
+		return Call_Count;
 	}
 
 	public int Add(String Input) throws Exception {
 		Call_Count++;
 //		when null string is passed in input
-		if (Input.equals(""))
+		if (isEmpty(Input))
 			return 0;
 
 		String Numbers[] = getInputSplitByDelimiter(Input);
@@ -42,7 +48,9 @@ public class StringCalculator {
 			throw new Exception("negatives not allowed : " + negative_numbers);
 
 		for (String s : Numbers) {
-			int n = Integer.parseInt(s);
+			int n = 0;
+			if (s.length() != 0)
+				n = Integer.parseInt(s);
 
 //			Numbers less than or equal to 1000 will only be considered in the sum
 			if (n <= 1000)
@@ -54,26 +62,14 @@ public class StringCalculator {
 
 	public String[] getInputSplitByDelimiter(String Input) {
 
-//		Handling the custom Delimiters of length greater then 1 between the numbers.
+//		Handling the multiple Delimiters of any length between the numbers.
 		if (Input.startsWith("//[")) {
-			String DelimiterInput = Input.split("\n")[0];
-
-			Matcher m = Pattern.compile("\\[(.*?)\\]").matcher(DelimiterInput);
-			m.find();
-			String customDelimiter = m.group(1);
-			String numbers = Input.split("\n")[1];
-
-			return numbers.split(Pattern.quote(customDelimiter));
+			return getMultipleDelimitersOfAnyLength(Input);
 		}
 
 //		Handling the custom Delimiters between the numbers
 		else if (Input.startsWith("//")) {
-			Matcher m = Pattern.compile("//(.)\n(.*)").matcher(Input);
-			m.matches();
-			String customDelimiter = m.group(1);
-			String numbers = m.group(2);
-
-			return numbers.split(Pattern.quote(customDelimiter));
+			return getSingleDelimter(Input);
 		}
 
 //		Handling the new line and commas between the numbers
@@ -87,7 +83,9 @@ public class StringCalculator {
 //		Catching all the negative numbers present in the string.
 		StringBuilder negative_numbers = new StringBuilder();
 		for (String s : Numbers) {
-			int n = Integer.parseInt(s);
+			int n = 0;
+			if (s.length() != 0)
+				n = Integer.parseInt(s);
 
 			if (n < 0)
 				negative_numbers.append(n + " ");
@@ -96,9 +94,42 @@ public class StringCalculator {
 		return negative_numbers.toString();
 	}
 
-	public Integer getCalledCount() {
-//		return the count of how many times Add function has been invoked
-		return Call_Count;
+	public String[] getSingleDelimter(String Input) {
+//		Handling the custom Delimiter(Single Delmiter) between the numbers
+
+		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(Input);
+
+		m.matches();
+
+		String customDelimiter = m.group(1);
+
+		String numbers = m.group(2);
+
+		return numbers.split(Pattern.quote(customDelimiter));
 	}
 
+	public String[] getMultipleDelimitersOfAnyLength(String Input) {
+//		Handling the multiple Delimiters of length greater then 1 between the numbers.
+
+		String DelimiterInput = Input.split("\n")[0];
+
+		Matcher m = Pattern.compile("\\[(.*?)\\]").matcher(DelimiterInput);
+		
+		StringBuilder customDelimiter = new StringBuilder();
+
+		if (m.find())
+			customDelimiter.append("\\" + m.group(1));
+
+		while (m.find())
+			customDelimiter.append("|\\" + m.group(1));
+
+		String numbers = Input.split("\n")[1];
+		
+		String s[] = numbers.split(customDelimiter.toString());
+		
+//		for(String st : s)
+//			System.out.println(st);
+		
+		return numbers.split((customDelimiter.toString()));
+	}
 }

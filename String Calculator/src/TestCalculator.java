@@ -94,13 +94,13 @@ public class TestCalculator {
 		Calculator.setCall_Count(0);
 
 		int Call_Time = 5;
-		
-		for (int call = 0; call < Call_Time; call++) 
+
+		for (int call = 0; call < Call_Time; call++)
 			assertEquals(6, Calculator.Add("1,2,3"));
-		
+
 		assertEquals(5, Calculator.getCalledCount());
 	}
-	
+
 	@Test
 	public void Test12() throws Exception {
 //	test : Numbers greater than 1000 shoulder be ignored.
@@ -112,11 +112,19 @@ public class TestCalculator {
 //	test : Custom delimiter of length greater than 1.
 		assertEquals(15, Calculator.Add("//[**]\n1**2**3**4**5"));
 	}
-	
+
+//	@Test
+//	public void Test14() throws Exception {
+////	test : Multiple Delimiters(Single length) used  in one string.
+//
+//		assertEquals(10, Calculator.Add("//[*][+][?]\n1*2+3?4"));
+//	}
+
 	@Test
-	public void Test14() throws Exception {
-//	test : Multiple Delimiters used  in one string.
-		assertEquals(15, Calculator.Add("“//[*][%]\\n1*2%3"));
+	public void Test15() throws Exception {
+//	test : Multiple Delimiters(Any length) used  in one string.
+
+		assertEquals(10, Calculator.Add("//[+][*][?]\n1+2?3*4"));
 	}
-	
+
 }
