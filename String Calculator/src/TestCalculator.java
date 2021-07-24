@@ -124,7 +124,7 @@ public class TestCalculator {
 	public void Test15() throws Exception {
 //	test : Multiple Delimiters(Any length) used  in one string.
 
-		assertEquals(10, Calculator.Add("//[++][**][??]\n1++2**31??4"));
+		assertEquals(10, Calculator.Add("//[++][**][??]\n1++2**3??4"));
 	}
 
 }

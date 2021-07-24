@@ -62,14 +62,10 @@ public class StringCalculator {
 
 	public String[] getInputSplitByDelimiter(String Input) {
 
-//		Handling the multiple Delimiters of any length between the numbers.
-		if (Input.startsWith("//[")) {
-			return getMultipleDelimitersOfAnyLength(Input);
-		}
+//		Handling the multiple custom Delimiters of any length between the numbers.
+		if (Input.startsWith("//")) {
 
-//		Handling the custom Delimiters between the numbers
-		else if (Input.startsWith("//")) {
-			return getSingleDelimter(Input);
+			return splitInputForCustomDelimiters(Input);
 		}
 
 //		Handling the new line and commas between the numbers
@@ -94,42 +90,17 @@ public class StringCalculator {
 		return negative_numbers.toString();
 	}
 
-	public String[] getSingleDelimter(String Input) {
-//		Handling the custom Delimiter(Single Delmiter) between the numbers
+	public String[] splitInputForCustomDelimiters(String Input) {
 
-		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(Input);
+//		First : replace all the meta characters(delimiters) with white spaces in the input irrespective of any length.
+		Input = Input.replaceAll("[^\\d]", " ");
 
-		m.matches();
+//		Second : replace all the multiple white spaces from the Input string with a single white space.
+		Input = Input.replaceAll(" +", " ");
 
-		String customDelimiter = m.group(1);
+//		Third : remove any unnecessary white spaces at the starting or at end of the Input. 
+		Input = Input.trim();
 
-		String numbers = m.group(2);
-
-		return numbers.split(Pattern.quote(customDelimiter));
-	}
-
-	public String[] getMultipleDelimitersOfAnyLength(String Input) {
-//		Handling the multiple Delimiters of length greater then 1 between the numbers.
-
-		String DelimiterInput = Input.split("\n")[0];
-
-		Matcher m = Pattern.compile("\\[(.*?)\\]").matcher(DelimiterInput);
-		
-		StringBuilder customDelimiter = new StringBuilder();
-
-		if (m.find())
-			customDelimiter.append("\\" + m.group(1));
-
-		while (m.find())
-			customDelimiter.append("|\\" + m.group(1));
-
-		String numbers = Input.split("\n")[1];
-		
-		String s[] = numbers.split(customDelimiter.toString());
-		
-		for(String st : s)
-			System.out.println(st);
-		
-		return numbers.split((customDelimiter.toString()));
+		return Input.split(" ");
 	}
 }
