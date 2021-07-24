@@ -110,21 +110,21 @@ public class TestCalculator {
 	@Test
 	public void Test13() throws Exception {
 //	test : Custom delimiter of length greater than 1.
-		assertEquals(15, Calculator.Add("//[**]\n1**2**3**4**5"));
+		assertEquals(24, Calculator.Add("//[**]\n10**2**3**4**5"));
 	}
 
-//	@Test
-//	public void Test14() throws Exception {
-////	test : Multiple Delimiters(Single length) used  in one string.
-//
-//		assertEquals(10, Calculator.Add("//[*][+][?]\n1*2+3?4"));
-//	}
+	@Test
+	public void Test14() throws Exception {
+//	test : Multiple Delimiters(Single length) used  in one string.
+
+		assertEquals(19, Calculator.Add("//[*][+][?]\n10*2+3?4"));
+	}
 
 	@Test
 	public void Test15() throws Exception {
 //	test : Multiple Delimiters(Any length) used  in one string.
 
-		assertEquals(10, Calculator.Add("//[+][*][?]\n1+2?3*4"));
+		assertEquals(10, Calculator.Add("//[++][**][??]\n1++2**31??4"));
 	}
 
 }

@@ -127,8 +127,8 @@ public class StringCalculator {
 		
 		String s[] = numbers.split(customDelimiter.toString());
 		
-//		for(String st : s)
-//			System.out.println(st);
+		for(String st : s)
+			System.out.println(st);
 		
 		return numbers.split((customDelimiter.toString()));
 	}
